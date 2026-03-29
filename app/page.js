@@ -1,11 +1,16 @@
 'use client';
 
 export default function Home() {
-
   const handleWhatsApp = () => {
-    const message = "Hello, I want to join NGO training";
-    const url = `https://wa.me/919129861259?text=${encodeURIComponent(message)}`;
-    window.location.href = url;
+    const message = encodeURIComponent("Hello, I want to join NGO training");
+
+    // पहले सीधे WhatsApp app खोलने की कोशिश
+    window.location.href = `whatsapp://send?phone=919129861259&text=${message}`;
+
+    // अगर app protocol काम न करे, तो fallback
+    setTimeout(() => {
+      window.location.href = `https://wa.me/919129861259?text=${message}`;
+    }, 1200);
   };
 
   const programs = [
@@ -40,13 +45,10 @@ export default function Home() {
 
   return (
     <div style={{ fontFamily: 'Arial', background: '#f8fafc' }}>
-
-      {/* HEADER */}
       <header style={{ padding: 20, background: 'white', position: 'sticky', top: 0 }}>
         <b>Collective Action India</b>
       </header>
 
-      {/* HERO */}
       <section style={{ padding: 40, background: '#0f172a', color: 'white' }}>
         <h1>Empowering Rural Communities</h1>
 
@@ -58,7 +60,8 @@ export default function Home() {
               background: 'white',
               borderRadius: 10,
               cursor: 'pointer',
-              fontWeight: 700
+              fontWeight: 700,
+              border: 'none',
             }}
           >
             Join WhatsApp
@@ -66,27 +69,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PROGRAMS */}
       <section style={{ padding: 40 }}>
         <h2>Programs</h2>
-        {programs.map(p => (
+        {programs.map((p) => (
           <div key={p.title} style={{ marginTop: 10 }}>
             {p.icon} {p.title}
           </div>
         ))}
       </section>
 
-      {/* IMPACT */}
       <section style={{ padding: 40 }}>
         <h2>Impact</h2>
-        {impact.map(i => (
+        {impact.map((i) => (
           <div key={i.label}>
             {i.value} - {i.label}
           </div>
         ))}
       </section>
 
-      {/* CONTACT */}
       <section style={{ padding: 40 }}>
         <h2>Contact</h2>
 
@@ -98,25 +98,26 @@ export default function Home() {
             color: 'white',
             borderRadius: 10,
             cursor: 'pointer',
-            fontWeight: 700
+            fontWeight: 700,
+            border: 'none',
           }}
         >
           WhatsApp Now
         </button>
       </section>
 
-      {/* FOOTER */}
       <footer style={{ padding: 20, background: '#020617', color: 'white' }}>
         © 2026 Collective Action India
       </footer>
 
-      {/* FLOATING WHATSAPP */}
-      <div style={{
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        zIndex: 999
-      }}>
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          zIndex: 999,
+        }}
+      >
         <button
           onClick={handleWhatsApp}
           style={{
@@ -128,13 +129,12 @@ export default function Home() {
             fontSize: '24px',
             border: 'none',
             cursor: 'pointer',
-            boxShadow: '0 10px 25px rgba(0,0,0,0.25)'
+            boxShadow: '0 10px 25px rgba(0,0,0,0.25)',
           }}
         >
           💬
         </button>
       </div>
-
     </div>
   );
 }
