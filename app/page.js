@@ -77,8 +77,7 @@ export default function Home() {
             </p>
             <div style={{ marginTop: '28px', display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
              <a href="https://wa.me/919129861259?text=Hello%20I%20want%20to%20join%20NGO%20training" 
-   target="_blank" 
-   rel="noreferrer"
+   
    style={{ background: 'white', color: '#0f172a', padding: '14px 22px', borderRadius: '16px', fontWeight: 700 }}>
    Join WhatsApp
 </a>
